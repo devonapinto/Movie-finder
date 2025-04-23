@@ -18,13 +18,13 @@
 
 /* Dark theme */
 body.dark-theme {
-  --md-dark-color: #3b385f;
+  --md-dark-color: #795990;
   --dark-color: #232322;
   --dark-color-rgb: 251, 249, 249;
-  --light-dark-color: #c9d5f5;
-  --accent-color: #202589;
-  --hover-bg: #0b7cb1;
-  --text-light: #1e2830;
+  --light-dark-color: #d6a4e5;
+  --accent-color: #7944b1;
+  --hover-bg: #6e3a81;
+  --text-light: #232e36;
   --text-muted: #0c0f16;
   --bg-image: url('light-theme-bg.jpg');
 }
