@@ -9,7 +9,14 @@ themeToggleBtn.addEventListener('click', () => {
   body.classList.toggle('dark-theme');
   const isDark = body.classList.contains('dark-theme');
   themeToggleBtn.innerHTML = `<i class="fas fa-${isDark ? 'sun' : 'moon'}"></i>`;
+  
+  // Smooth transition for background image
+  document.documentElement.style.setProperty(
+    '--bg-image',
+    isDark ? 'url(light-theme-bg.jpg)' : 'url(dark-theme-bg.jpeg)'
+  );
 });
+
 
 // Load movies from API
 async function loadMovies(searchTerm) {
@@ -55,7 +62,7 @@ function loadMovieDetails() {
     movie.addEventListener('click', async () => {
       searchList.classList.add('hide-search-list');
       movieSearchBox.value = "";
-      const result = await fetch(`https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`);
+      const result = await fetch(`http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`);
       const movieDetails = await result.json();
       displayMovieDetails(movieDetails);
     });
@@ -87,4 +94,4 @@ window.addEventListener('click', (event) => {
   if (event.target.className !== "form-control") {
     searchList.classList.add('hide-search-list');
   }
-});
+}); 
