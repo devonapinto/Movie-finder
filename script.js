@@ -39,13 +39,15 @@ function findMovies() {
 function displayMovieList(movies) {
   searchList.innerHTML = "";
   for (let movie of movies) {
-    let moviePoster = movie.Poster !== "N/A" ? movie.Poster : "image_not_found.png";
+    let moviePoster = (movie.Poster && movie.Poster !== "N/A") 
+                        ? movie.Poster.replace("http://", "https://") 
+                        : "image_not_found.png";
     const div = document.createElement("div");
     div.dataset.id = movie.imdbID;
     div.classList.add("search-list-item");
     div.innerHTML = `
       <div class="search-item-thumbnail">
-        <img src="${moviePoster}">
+        <img src="${moviePoster}" onerror="this.onerror=null; this.src='image_not_found.png';">
       </div>
       <div class="search-item-info">
         <h3>${movie.Title}</h3>
@@ -72,7 +74,10 @@ function loadMovieDetails() {
 function displayMovieDetails(details) {
   resultGrid.innerHTML = `
     <div class="movie-poster">
-      <img src="${details.Poster !== "N/A" ? details.Poster : "image_not_found.png"}" alt="movie poster">
+      <img src="${(details.Poster && details.Poster !== "N/A") 
+                  ? details.Poster.replace("http://", "https://") 
+                  : "image_not_found.png"}" 
+           alt="movie poster" onerror="this.onerror=null; this.src='image_not_found.png';">
     </div>
     <div class="movie-info">
       <h3 class="movie-title">${details.Title}</h3>
